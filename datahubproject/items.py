@@ -16,9 +16,11 @@ class DatahubprojectItem(scrapy.Item):
     price=scrapy.Field()
     reviews=scrapy.Field()
     colour=scrapy.Field()
-   # sizes=scrapy.Field()
-   # description=scrapy.Field()
-   # sku=scrapy.Field()
-   # product_id=scrapy.Field()
-   # product_url=scrapy.Field()
-   # image_urls=scrapy.Field()
+    sizes=scrapy.Field()
+    description=scrapy.Field()
+    sku=scrapy.Field()
+    product_id=scrapy.Field()
+    product_url=scrapy.Field()
+    image_urls=scrapy.Field()
+
+
