@@ -31,10 +31,21 @@ class CarbonspiderSpider(scrapy.Spider):
         item['price'] = response.css('span.ProductMeta__Price.Price::text').get()
         item['reviews'] = len(response.css('div.yotpo-review'))
         item['colour'] = response.css('input.ColorSwatch__Radio::attr(value)').get()
-        item['sizes'] = response.css('div.ProductForm__Option.ProductForm__Option--labelled label::text').getall()
+        sizes = response.css('div.ProductForm__Option.ProductForm__Option--labelled label::text').getall()
+        clean_sizes = [size.strip() for size in sizes if size.strip()]
+        item['sizes'] = clean_sizes
         item['description'] = response.css('div.Faq__Answer.Rte p span::text').get()
         item['product_url'] = response.url
         item['image_urls'] = response.css('img.Image--fadeIn::attr(src)').getall()
+
+        product_name = response.css('h1.ProductMeta__Title.Heading::text').get()
+        if product_name:
+            product_name = product_name.strip()
+        else:
+            product_name = ""
+
+        item['breadcrumbs'] = ["Home", "Shop All", "Tops", product_name]
+
 
         json_data = response.css('script[type="application/json"][data-product-data]::text').get()
         if json_data:

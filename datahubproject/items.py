@@ -9,7 +9,7 @@ import scrapy
 class DatahubprojectItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-   # breadcrumbs=scrapy.Field()
+    breadcrumbs=scrapy.Field()
     primary_image_url=scrapy.Field()
     brand=scrapy.Field()
     product_name=scrapy.Field()
